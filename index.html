@@ -11,7 +11,7 @@ body {
   background: #2e1d13; /* Deeper wood base tone */
   background-image: 
     linear-gradient(rgba(46, 29, 19, 0.85), rgba(46, 29, 19, 0.85)),
-    url('https://unsplash.com'); /* Real forest background fallback */
+    url('https://unsplash.com'); /* Fixed fallback image */
   background-attachment: fixed;
   background-size: cover;
   color: #f7ede2;
@@ -31,7 +31,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .lock-box {
   background: #3d2519;
@@ -92,7 +92,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -366,3 +366,125 @@ footer {
             <img id="img-3" alt="" src="">
           </div>
           <input type="file" id="file-3" accept="image/*" style="display:none;" onchange="previewImage(this, 'img-3', 'text-3')">
+        <!-- Page 3 -->
+        <div class="book-page">
+          <div class="image-placeholder" onclick="triggerUpload('file-3')">
+            <span id="text-3">Add Photo 🌹</span>
+            <img id="img-3" alt="" src="">
+          </div>
+          <input type="file" id="file-3" accept="image/*" style="display:none;" onchange="previewImage(this, 'img-3', 'text-3')">
+          <input type="text" style="color:#2e1d13; background:#fff; border:1px solid #ccc; margin:10px 0 0 0;" placeholder="Memory Title...">
+          <input type="date" style="color:#2e1d13; background:#fff; border:1px solid #ccc; margin:5px 0 0 0;">
+        </div>
+      </div>
+    </div>
+
+  <footer>
+    <p>Made with ❤️ for our endless adventure.</p>
+  </footer>
+</div>
+
+<script>
+// Password Gate Script
+function checkLock() {
+  const answerInput = document.getElementById('secret-answer').value.trim().toLowerCase();
+  const errorMsg = document.getElementById('lock-error');
+  const lockScreen = document.getElementById('lock-screen');
+  const mainContent = document.getElementById('main-content');
+  
+  // !!! CHANGE THIS VALUE TO YOUR ACTUAL FIRST DATE MOVIE !!!
+  const correctMovie = "interstellar"; 
+  
+  if (answerInput === correctMovie) {
+    lockScreen.style.opacity = '0';
+    setTimeout(() => {
+      lockScreen.style.display = 'none';
+      mainContent.style.display = 'block';
+      setTimeout(() => { mainContent.style.opacity = '1'; }, 50);
+      initFireflies(); // Start fireflies after unlock
+    }, 500);
+  } else {
+    errorMsg.style.display = 'block';
+  }
+}
+
+// Photo Upload Triggers
+function triggerUpload(id) {
+  document.getElementById(id).click();
+}
+
+// Image Preview Renderer
+function previewImage(input, imgId, textId) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById(imgId);
+      img.src = e.target.result;
+      img.style.display = 'block';
+      document.getElementById(textId).style.display = 'none';
+    }
+    reader.readAsDataURL(file);
+  }
+}
+
+// Fireflies System
+function initFireflies() {
+  const canvas = document.getElementById('fireflies');
+  const ctx = canvas.getContext('2d');
+  
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  const fireflies = [];
+  const count = 40;
+
+  for(let i = 0; i < count; i++) {
+    fireflies.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 2 + 1,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+      alpha: Math.random(),
+      fadeSpeed: Math.random() * 0.02 + 0.005,
+      direction: Math.random() > 0.5 ? 1 : -1
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    fireflies.forEach(f => {
+      f.x += f.speedX;
+      f.y += f.speedY;
+      f.alpha += f.fadeSpeed * f.direction;
+
+      if (f.alpha >= 1) { f.direction = -1; }
+      else if (f.alpha <= 0.1) { f.direction = 1; }
+
+      if (f.x < 0) f.x = canvas.width;
+      if (f.x > canvas.width) f.x = 0;
+      if (f.y < 0) f.y = canvas.height;
+      if (f.y > canvas.height) f.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 163, 115, ${f.alpha})`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = "#d4a373";
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+</script>
+</body>
+</html>
