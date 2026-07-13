@@ -11,7 +11,7 @@ body {
   background: #2e1d13; /* Deeper wood base tone */
   background-image: 
     linear-gradient(rgba(46, 29, 19, 0.85), rgba(46, 29, 19, 0.85)),
-    url('https://unsplash.com'); /* Forest/wood texture vibe */
+    url('https://unsplash.com'); /* Real forest background fallback */
   background-attachment: fixed;
   background-size: cover;
   color: #f7ede2;
@@ -226,6 +226,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   top: 0;
   left: 0;
+  display: none;
 }
 
 /* Living Options Component */
@@ -249,22 +250,6 @@ input:focus, textarea:focus, select:focus {
   transform: scale(1.3);
 }
 
-/* Form Styling Extras */
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-li {
-  margin: 12px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-input[type="checkbox"] {
-  accent-color: #8B2635;
-  transform: scale(1.2);
-}
-
 footer {
   text-align: center;
   padding: 40px;
@@ -282,7 +267,7 @@ footer {
     <h2>🌹 Locked Garden 🌿</h2>
     <p>To enter our space, answer this question:</p>
     <label for="secret-answer" style="display:block; text-align:left; margin-bottom:5px; color:#d4a373;">What movie did we watch on our first date?</label>
-    <input type="text" id="secret-answer" placeholder="Your answer...">
+    <input type="text" id="secret-answer" placeholder="Your answer..." onkeydown="if(event.key === 'Enter') checkLock()">
     <button onclick="checkLock()">Unlock Memories</button>
     <p class="error-msg" id="lock-error">That's not the movie! Try again love. ❤️</p>
   </div>
@@ -317,7 +302,7 @@ footer {
       <div class="options-grid">
         <div class="option-card">
           <input type="radio" name="living-option" id="opt-city">
-          <label Useful for label clicks for="opt-city">
+          <label for="opt-city">
             <strong>🌆 Vibrant City Loft</strong>
             <p style="font-size: 14px; color: #a48060; margin: 5px 0 0 0;">Close to cafes, culture, galleries, and late-night walks.</p>
           </label>
@@ -380,3 +365,4 @@ footer {
             <span id="text-3">Add Photo 🌹</span>
             <img id="img-3" alt="" src="">
           </div>
+          <input type="file" id="file-3" accept="image/*" style="display:none;" onchange="previewImage(this, 'img-3', 'text-3')">
