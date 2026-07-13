@@ -2,472 +2,904 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Next Chapter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>For Us 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --wood-dark: #1c100a;
-      --wood-mid: #2e1d13;
-      --wood-light: #3d2519;
-      --rose-red: #8B2635;
-      --rose-dark: #5a1722;
-      --beige: #f7ede2;
-      --nude: #e8d5c4;
-      --black: #0f0a07;
-      --vine: #2d4a2b;
-      --moss: #4a6b3a;
+      --rose: #8B1E3F;
+      --rose-light: #A93255;
+      --beige: #E8D7C3;
+      --nude: #D4C4B0;
+      --dark-wood: #2C1810;
+      --wood: #3E2723;
+      --forest: rgba(30, 20, 15, 0.85);
+      --paper: #F5F0E8;
+      --ink: #3E2723;
     }
+
     * {
-      box-sizing: border-box;
-      transition: all 0.3s ease;
-    }
-    body {
       margin: 0;
-      font-family: Georgia, serif;
-      background: var(--wood-dark);
-      background-image:
-        linear-gradient(rgba(28, 16, 10, 0.92), rgba(28, 16, 10, 0.92)),
-        url('https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80');
-      background-attachment: fixed;
-      background-size: cover;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: var(--dark-wood);
       color: var(--beige);
       overflow-x: hidden;
-      cursor: default;
+      cursor: none;
     }
 
-    /* Vines + Roses Decor */
-.vine-corner {
-      position: fixed; pointer-events: none; z-index: 1;
-      opacity: 0.7;
-    }
-.vine-tl { top: 0; left: 0; width: 200px; height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M10 10 Q 50 40 30 80 T 80 120 Q 120 100 150 150" stroke="%232d4a2b" stroke-width="3" fill="none"/><circle cx="150" cy="150" r="8" fill="%238B2635"/><circle cx="140" cy="145" r="5" fill="%235a1722"/></svg>') no-repeat;
-    }
-.vine-br { bottom: 0; right: 0; width: 200px; height: 200px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M190 190 Q 150 160 170 120 T 120 80 Q 80 100 50 50" stroke="%232d4a2b" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="8" fill="%238B2635"/><circle cx="60" cy="55" r="5" fill="%235a1722"/></svg>') no-repeat;
-    }
-
-    /* Glowing Fireflies */
-.firefly {
+    /* Custom Rose Cursor */
+    .custom-cursor {
       position: fixed;
-      width: 5px; height: 5px;
-      background: radial-gradient(circle, #fffacd 0%, #ffeb3b 40%, transparent 70%);
-      border-radius: 50%;
-      box-shadow:
-        0 0 6px #ffeb3b,
-        0 0 12px #ffeb3b,
-        0 0 20px #ff9800,
-        0 0 35px rgba(255, 152, 0, 0.4);
-      pointer-events: none;
-      z-index: 1;
-      animation: drift linear infinite, fireflyPulse ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      from { transform: translateY(0) translateX(0) scale(1); }
-      25% { transform: translateY(-25vh) translateX(15px) scale(1.1); }
-      50% { transform: translateY(-50vh) translateX(-10px) scale(0.9); }
-      75% { transform: translateY(-75vh) translateX(20px) scale(1.05); }
-      to { transform: translateY(-105vh) translateX(0px) scale(1); }
-    }
-    @keyframes fireflyPulse {
-      0% { opacity: 0.2; box-shadow: 0 0 4px #ffeb3b, 0 0 8px #ffeb3b, 0 0 12px #ff9800; }
-      50% { opacity: 1; box-shadow: 0 0 8px #ffeb3b, 0 0 16px #ffeb3b, 0 0 25px #ff9800, 0 0 40px rgba(255, 152, 0, 0.6); }
-      100% { opacity: 0.3; box-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ff9800; }
-    }
-
-    /* Moss Cursor Trail */
-.moss-particle {
-      position: fixed;
-      width: 8px; height: 8px;
-      background: radial-gradient(circle, #4a6b3a 0%, #2d4a2b 60%, transparent 100%);
-      border-radius: 50% 40% 60% 30%;
+      width: 20px;
+      height: 20px;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0;
-      transform: translate(-50%, -50%) rotate(0deg);
-      animation: mossFade 1.2s ease-out forwards;
-      filter: blur(0.3px);
+      transition: transform 0.1s ease;
     }
-.moss-particle::before {
-      content: '';
+
+    .custom-cursor::before {
+      content: '🌹';
+      font-size: 20px;
       position: absolute;
-      width: 4px; height: 4px;
-      background: #3a5a2a;
-      border-radius: 60% 40% 30% 50%;
-      top: -2px; left: 3px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-    @keyframes mossFade {
-      0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
-      50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1) rotate(180deg); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(360deg); }
-    }
-    @media (hover: none) {.moss-particle { display: none; } }
 
-    /* Music Control */
-.music-toggle {
-      position: fixed; top: 20px; right: 20px; z-index: 10001;
-      background: rgba(61, 37, 25, 0.8); border: 1px solid var(--rose-red);
-      color: var(--beige); padding: 10px 15px; border-radius: 50px;
-      cursor: pointer; backdrop-filter: blur(10px);
-      font-family: Georgia, serif;
+    /* Forest Background */
+    .forest-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(var(--forest), var(--forest)),
+        url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600') center/cover;
+      z-index: -2;
     }
-.music-toggle:hover { background: var(--rose-red); }
 
-    /* Lock Screen */
-    #lock-screen {
-      position: fixed; inset: 0; background: var(--black);
-      display: flex; align-items: center; justify-content: center;
+    /* Fireflies */
+    .firefly {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #FFD700;
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+      animation: float 20s infinite ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      50% { transform: translate(100px, -100px); }
+    }
+
+    /* Music Toggle */
+    .music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background: var(--rose);
+      border: 2px solid var(--beige);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .music-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Last Updated Tag */
+    .last-updated {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(139, 30, 63, 0.9);
+      color: var(--beige);
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 11px;
+      z-index: 999;
+      border: 1px solid var(--beige);
+    }
+
+    /* Thinking of You Button */
+    .thinking-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      background: var(--rose);
+      border: 2px solid var(--beige);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(139, 30, 63, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(139, 30, 63, 0.6); }
+      50% { box-shadow: 0 4px 30px rgba(139, 30, 63, 0.9); }
+    }    /* Lock Screen */
+    .lock-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--dark-wood);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       z-index: 10000;
-    }.lock-box {
-      background: var(--wood-light); padding: 45px; border-radius: 20px;
-      border: 2px solid var(--rose-red); box-shadow: 0 0 40px rgba(139, 38, 53, 0.7);
-      text-align: center; max-width: 420px; width: 90%; z-index: 10001;
+      transition: opacity 1s ease;
+    }
+
+    .lock-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .book-cover {
+      width: 280px;
+      height: 380px;
+      background: linear-gradient(135deg, var(--wood), var(--dark-wood));
+      border: 3px solid var(--rose);
+      border-radius: 5px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
-    }
-.lock-box::before {
-      content: '🌹'; position: absolute; top: -15px; left: 50%;
-      transform: translateX(-50%); font-size: 2rem;
-    }
-.lock-box h2 { margin: 10px 0; font-size: 2rem; color: var(--beige); }
-.lock-box p { opacity: 0.85; margin: 0 0 25px 0; font-size: 1rem; color: var(--nude); }
-.lock-box input {
-      width: 100%; padding: 15px; margin: 15px 0;
-      border: 1px solid var(--rose-dark); border-radius: 8px; font-size: 1rem;
-      background: var(--beige); color: var(--wood-dark);
-    }
-.lock-box button {
-      background: var(--rose-red); color: var(--beige); border: none;
-      padding: 15px 30px; border-radius: 8px; font-size: 1.1rem;
-      cursor: pointer; width: 100%; letter-spacing: 1px;
-    }
-.lock-box button:hover { background: var(--rose-dark); transform: translateY(-2px); }
-.lock-box button:disabled { opacity: 0.5; cursor: not-allowed; }
-.error-msg { color: #ffb3b3; margin-top: 12px; height: 20px; font-size: 0.95rem; }
-.hidden { opacity: 0; pointer-events: none; transform: scale(0.95); }
-
-    /* Main Content */
-    #main-content {
-      display: none; padding: 20px; min-height: 100vh;
-      max-width: 900px; margin: 0 auto; position: relative; z-index: 2;
-    }
-    #main-content h1 {
-      font-size: 2.8rem; text-align: center; margin: 30px 0;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.7); color: var(--beige);
+      margin-bottom: 30px;
     }
 
-    /* Book + Pages */
-.book-page {
-      background: var(--nude); color: var(--wood-dark);
-      padding: 35px; border-radius: 18px; margin: 25px 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(139, 38, 53, 0.2);
-      display: none; position: relative;
-    }
-.book-page::before {
-      content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px;
-      border: 1px dashed rgba(139, 38, 53, 0.3); border-radius: 12px; pointer-events: none;
-    }
-.book-page.active { display: block; animation: fadeIn 0.3s ease; }
-.page-number { text-align: center; opacity: 0.5; margin-top: 20px; font-size: 0.9rem; }
-
-.image-placeholder {
-      width: 100%; height: 300px; border: 2px dashed var(--rose-red);
-      border-radius: 14px; display: flex; align-items: center;
-      justify-content: center; cursor: pointer; position: relative;
-      background: rgba(139, 38, 53, 0.06); margin: 0 auto 25px auto;
-      overflow: hidden;
-    }
-.image-placeholder:hover { background: rgba(139, 38, 53, 0.12); }
-.image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-.image-placeholder span { position: absolute; font-size: 1.2rem; color: var(--rose-red); }
-
-.book-page input,.book-page textarea {
-      width: 100%; padding: 14px; margin: 10px 0; border-radius: 10px;
-      border: 1px solid rgba(139, 38, 53, 0.3); font-family: Georgia, serif; font-size: 1rem;
-      background: var(--beige); color: var(--wood-dark);
-    }
-.book-page textarea { resize: vertical; min-height: 90px; }
-
-    /* Nav + Controls */
-.nav-controls {
-      display: flex; justify-content: space-between; align-items: center;
-      margin: 30px 0; gap: 15px;
-    }
-.nav-controls button {
-      background: var(--rose-red); color: var(--beige); border: none;
-      padding: 14px 25px; border-radius: 10px; cursor: pointer;
-      font-family: Georgia, serif; font-size: 1rem;
-    }
-.nav-controls button:hover { background: var(--rose-dark); transform: translateY(-2px); }
-.nav-controls button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-.top-controls { text-align: center; margin-bottom: 25px; }
-.top-controls button {
-      background: rgba(247, 237, 226, 0.15); color: var(--beige);
-      border: 1px solid var(--rose-red); padding: 10px 18px;
-      border-radius: 8px; cursor: pointer; margin: 5px;
-      font-size: 0.95rem; backdrop-filter: blur(8px);
-    }
-.top-controls button:hover { background: rgba(139, 38, 53, 0.4); }
-
-    footer { text-align: center; padding: 50px 20px; opacity: 0.7; color: var(--nude); }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
+    .book-title {
+      font-family: 'Caveat', cursive;
+      font-size: 36px;
+      color: var(--rose);
+      margin-bottom: 10px;
+      text-align: center;
     }
 
-    @media (max-width: 600px) {
-      #main-content h1 { font-size: 2.2rem; }
-  .book-page { padding: 25px; }
-  .image-placeholder { height: 240px; }
-  .vine-corner { width: 120px; height: 120px; }
+    .book-subtitle {
+      font-size: 14px;
+      color: var(--beige);
+      font-style: italic;
+    }
+
+    .password-input {
+      background: rgba(245, 240, 232, 0.1);
+      border: 2px solid var(--rose);
+      color: var(--beige);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 16px;
+      text-align: center;
+      width: 200px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .password-input:focus {
+      outline: none;
+      background: rgba(245, 240, 232, 0.2);
+    }
+
+    .unlock-btn {
+      margin-top: 15px;
+      background: var(--rose);
+      color: var(--beige);
+      border: none;
+      padding: 10px 30px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Unlock Animation */
+    .unlock-bloom {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10001;
+    }
+
+    .unlock-bloom.active {
+      animation: bloom 2s ease-out forwards;
+    }
+
+    @keyframes bloom {
+      0% { font-size: 0px; opacity: 0; }
+      50% { font-size: 120px; opacity: 1; }
+      100% { font-size: 200px; opacity: 0; }
+    }
+
+    /* Main Container */
+    .container {
+      display: none;
+      min-height: 100vh;
+      padding: 20px;
+      padding-bottom: 100px;
+    }
+
+    .container.active {
+      display: block;
+    }
+
+    /* Page System */
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(44, 24, 16, 0.95);
+      border-top: 2px solid var(--rose);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 998;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--beige);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+    }
+
+    .nav-btn.active {
+      color: var(--rose-light);
+    }
+
+    .nav-icon {
+      font-size: 20px;
+    }
+
+    /* Time Together Counter */
+    .time-counter {
+      text-align: center;
+      background: rgba(139, 30, 63, 0.2);
+      border: 1px solid var(--rose);
+      border-radius: 15px;
+      padding: 15px;
+      margin: 20px 0;
+      font-family: 'Caveat', cursive;
+      font-size: 18px;
+      color: var(--beige);
     }
   </style>
 </head>
 <body>
-  <!-- Decorative Elements -->
-  <div class="vine-corner vine-tl"></div>
-  <div class="vine-corner vine-br"></div>
-  <div id="fireflies"></div>
-
+  <div class="forest-bg"></div>
+  <div class="custom-cursor" id="cursor"></div>
+  
   <!-- Music -->
-  <audio id="lofi-music" loop>
+  <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
   </audio>
-  <button class="music-toggle" id="music-toggle" onclick="toggleMusic()">🔇 Music Off</button>  <!-- Lock Screen -->
-  <div id="lock-screen">
-    <div class="lock-box">
-      <h2>Our Next Chapter</h2>
-      <p>Hint: It’s a big snake 🐍</p>
-      <input type="password" id="secret-answer" placeholder="Enter the secret" />
-      <button id="unlock-btn" onclick="checkLock()">Unlock Our Story</button>
-      <div class="error-msg" id="lock-error"></div>
+  <button class="music-toggle" id="musicToggle">🎵</button>
+  
+  <!-- Thinking of You Button -->
+  <button class="thinking-btn" id="thinkingBtn">❤️</button>
+  
+  <!-- Last Updated -->
+  <div class="last-updated" id="lastUpdated">She added something recently</div>
+
+  <!-- Lock Screen -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="book-cover">
+      <div class="book-title">Our Story</div>
+      <div class="book-subtitle">written in stardust & fireflies</div>
     </div>
+    <input type="password" class="password-input" id="passwordInput" placeholder="Enter our key">
+    <button class="unlock-btn" id="unlockBtn">Open Book</button>
   </div>
+
+  <div class="unlock-bloom" id="unlockBloom">🌹</div>
 
   <!-- Main Content -->
-  <div id="main-content">
-    <h1>Our Next Chapter</h1>
+  <div class="container" id="mainContainer">
+      <!-- Home/Calendar Page -->
+    <div class="page active" id="page-home">
+      <div class="time-counter" id="timeCounter">
+        We've been writing this chapter for 0 days, 0 hours
+      </div>
 
-    <div class="top-controls">
-      <button onclick="addPage()">+ Add Memory</button>
-      <button onclick="exportData()">Save Backup</button>
-      <button onclick="document.getElementById('import-file').click()">Load Backup</button>
-      <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(this)">
+      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Dates</h2>
+      
+      <!-- December 30 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <h3 style="color: var(--beige); font-size: 22px;">December 30</h3>
+          <span style="background: var(--rose); color: var(--beige); padding: 4px 12px; border-radius: 12px; font-size: 12px;">Our First Day</span>
+        </div>
+        <div style="color: var(--nude); font-size: 14px; margin-bottom: 10px;" id="daysSinceDec30">
+          Loading...
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 14px;">
+          <!-- PLACEHOLDER: Add your note about Dec 30 here -->
+          The day everything changed. Add your memory here.
+        </div>
+        <button class="envelope-btn" onclick="openNote('dec30')" style="margin-top: 15px; width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+
+      <!-- February 13 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <h3 style="color: var(--beige); font-size: 22px;">February 13</h3>
+          <span style="background: var(--rose); color: var(--beige); padding: 4px 12px; border-radius: 12px; font-size: 12px;">Next Chapter</span>
+        </div>
+        <div style="color: var(--nude); font-size: 14px; margin-bottom: 10px;" id="daysUntilFeb13">
+          Loading...
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 14px;">
+          <!-- PLACEHOLDER: Add your note about Feb 13 here -->
+          Counting down to see you again. Add your note here.
+        </div>
+        <button class="envelope-btn" onclick="openNote('feb13')" style="margin-top: 15px; width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
     </div>
 
-    <div class="book-container" id="book-container"></div>
-
-    <div class="nav-controls">
-      <button id="prev-btn" onclick="changePage(-1)">← Previous</button>
-      <span id="page-indicator">Page 1 of 1</span>
-      <button id="next-btn" onclick="changePage(1)">Next →</button>
+    <!-- Navigation Bar -->
+    <div class="nav">
+      <button class="nav-btn active" onclick="showPage('home')">
+        <span class="nav-icon">🏠</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('memories')">
+        <span class="nav-icon">📖</span>
+        <span>Memories</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('bucket')">
+        <span class="nav-icon">✨</span>
+        <span>Bucket List</span>
+      </button>
+      <button class="nav-btn" onclick="showPage('worries')">
+        <span class="nav-icon">💌</span>
+        <span>Letter</span>
+      </button>
     </div>
 
-    <footer><p>Made with ❤️ for our endless adventure</p></footer>
+    <!-- Secret Note Modal -->
+    <div id="noteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10002; align-items: center; justify-content: center; padding: 20px;">
+      <div style="background: var(--paper); color: var(--ink); padding: 30px; border-radius: 15px; max-width: 400px; width: 100%; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+        <button onclick="closeNote()" style="position: absolute; top: 10px; right: 10px; background: var(--rose); color: var(--beige); border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 18px;">×</button>
+        <div id="noteContent" style="font-family: 'Caveat', cursive; font-size: 20px; line-height: 1.6; min-height: 100px;"></div>
+      </div>
+    </div>
+        <!-- Memories Page -->
+    <div class="page" id="page-memories">
+      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Memories</h2>
+      
+      <!-- Memory: January 2 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 2</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
+          <img src="https://drive.google.com/uc?id=1i5qtIW8amYg39PjXM_YrxU3kbkvNKeLY" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for Jan 2 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('jan2')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+      <!-- Memory: January 5 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 5</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
+          <img src="https://drive.google.com/uc?id=1Ov2CWtrZ_a9iPR9alzV9__dnz0sMmY8V" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for Jan 5 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('jan5')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+      <!-- Memory: January 7 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 7</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for Jan 7 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('jan7')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+            <!-- Memory: February 13 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">February 13</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for Feb 13 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('feb13mem')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+      <!-- Memory: May 19 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">May 19</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for May 19 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('may19')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+      <!-- Memory: August 9 -->
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">August 9</h3>
+        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
+          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
+        </div>
+        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
+          <!-- PLACEHOLDER: Add your memory note for Aug 9 here -->
+          Add your memory for this day...
+        </div>
+        <button class="envelope-btn" onclick="openNote('aug9')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
+          💌 Open Secret Note
+        </button>
+      </div>
+    </div>
+        <!-- Bucket List Page -->
+    <div class="page" id="page-bucket">
+      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Bucket List</h2>
+      
+      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+        <p style="text-align: center; color: var(--nude); font-style: italic; margin-bottom: 20px; font-size: 14px;">
+          Things we’ll do together, one checkmark at a time ✨
+        </p>
+        
+        <div id="bucketList">
+          <!-- Bucket Item 1 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 0)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Watch the sunrise together
+            </div>
+          </div>
+
+          <!-- Bucket Item 2 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 1)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Cook dinner together over video call
+            </div>
+          </div>
+
+          <!-- Bucket Item 3 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 2)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Take a road trip with no destination
+            </div>
+          </div>
+
+          <!-- Bucket Item 4 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 3)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Stargaze and find constellations
+            </div>
+          </div>
+
+          <!-- Bucket Item 5 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 4)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Build a blanket fort and watch movies
+            </div>
+          </div>
+
+          <!-- Bucket Item 6 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 5)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Write letters to open on our anniversary
+            </div>
+          </div>
+
+          <!-- Bucket Item 7 -->
+          <div class="bucket-item" onclick="toggleBucket(this, 6)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
+            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
+            <div style="flex: 1; color: var(--beige); font-size: 15px;">
+              <!-- PLACEHOLDER: Edit this bucket list item -->
+              Get lost in a bookstore together
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; color: var(--nude); font-size: 13px;" id="bucketProgress">
+          0 of 7 completed
+        </div>
+      </div>
+    </div>
+        <!-- For Your Worries Letter Page -->
+    <div class="page" id="page-worries">
+      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">For Your Worries</h2>
+      
+      <div style="display: flex; justify-content: center; margin: 40px 0;">
+        <div id="worriesEnvelope" onclick="openWorriesLetter()" style="width: 200px; height: 140px; background: linear-gradient(135deg, var(--rose), var(--rose-light)); border-radius: 10px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform-style: preserve-3d; transition: transform 0.6s;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px;">💌</div>
+          <div style="position: absolute; bottom: 15px; width: 100%; text-align: center; color: var(--beige); font-family: 'Caveat', cursive; font-size: 18px;">
+            Tap to open
+          </div>
+        </div>
+      </div>
+
+      <div id="worriesLetterContent" style="display: none; background: var(--paper); color: var(--ink); padding: 30px; border-radius: 15px; margin: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); min-height: 300px;">
+        <div style="font-family: 'Caveat', cursive; font-size: 22px; line-height: 1.8; text-align: left;">
+          <!-- PLACEHOLDER: Leave blank for you to write your letter. Type your message here when ready. -->
+          <span id="worriesTypedText"></span><span id="worriesCursor" style="animation: blink 1s infinite;">|</span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <script>
-    // ===== Fireflies =====
+  <style>
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .bucket-item.completed .checkbox {
+      background: var(--rose);
+      color: var(--beige);
+    }
+
+    .bucket-item.completed .checkbox::before {
+      content: '✓';
+     <script>
+    // Config - Replace these with your details
+    const START_DATE = new Date('2026-12-30T00:00:00');
+    const REUNION_DATE = new Date('2026-02-13T00:00:00');
+    const PASSWORD = 'anaconda'; // CHANGE THIS
+    const FIREBASE_URL = 'https://your-firebase-url.firebaseio.com'; // REPLACE WITH YOUR URL
+
+    // State
+    let bucketState = [false, false, false, false, false];
+    let secretNotes = {
+      dec30: "PLACEHOLDER: Write your secret note for Dec 30 here",
+      feb13: "PLACEHOLDER: Write your secret note for Feb 13 here",
+      jan2: "PLACEHOLDER: Write your secret note for Jan 2 here",
+      jan5: "PLACEHOLDER: Write your secret note for Jan 5 here",
+      jan7: "PLACEHOLDER: Write your secret note for Jan 7 here",
+      feb13mem: "PLACEHOLDER: Write your secret note for Feb 13 memory here",
+      may19: "PLACEHOLDER: Write your secret note for May 19 here",
+      aug9: "PLACEHOLDER: Write your secret note for Aug 9 here"
+    };
+
+    // Custom Cursor
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.getElementById('cursor');
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Fireflies
     function createFireflies() {
-      const container = document.getElementById('fireflies');
-      const count = window.innerWidth < 600? 20 : 35;
-      for (let i = 0; i < count; i++) {
+      for(let i = 0; i < 15; i++) {
         const firefly = document.createElement('div');
         firefly.className = 'firefly';
-        firefly.style.left = Math.random() * 100 + 'vw';
-        firefly.style.top = (Math.random() * 20 + 80) + 'vh';
-        const duration = Math.random() * 25 + 20;
-        const pulseDuration = Math.random() * 2 + 1.5;
-        firefly.style.animationDuration = duration + 's, ' + pulseDuration + 's';
-        firefly.style.animationDelay = (Math.random() * 20) + 's, ' + (Math.random() * 3) + 's';
-        container.appendChild(firefly);
+        firefly.style.left = Math.random() * 100 + '%';
+        firefly.style.top = Math.random() * 100 + '%';
+        firefly.style.animationDelay = Math.random() * 20 + 's';
+        firefly.style.animationDuration = (15 + Math.random() * 10) + 's';
+        document.body.appendChild(firefly);
       }
     }
-    createFireflies();
 
-    // ===== Moss Cursor Trail =====
-    let mossCanSpawn = true;
-    document.addEventListener('mousemove', (e) => {
-      if (!mossCanSpawn) return;
-      mossCanSpawn = false;
-
-      if (document.getElementById('main-content').style.display!== 'block') {
-        setTimeout(() => { mossCanSpawn = true; }, 50);
-        return;
-      }
-
-      const moss = document.createElement('div');
-      moss.className = 'moss-particle';
-      moss.style.left = e.clientX + 'px';
-      moss.style.top = e.clientY + 'px';
-      moss.style.borderRadius = `${40 + Math.random()*20}% ${60 + Math.random()*20}% ${30 + Math.random()*20}% ${50 + Math.random()*20}%`;
-
-      document.body.appendChild(moss);
-      setTimeout(() => { moss.remove(); }, 1200);
-      setTimeout(() => { mossCanSpawn = true; }, 50);
-    });
-
-    // ===== Music =====
-    const music = document.getElementById('lofi-music');
-    const musicToggle = document.getElementById('music-toggle');
+    // Music Toggle
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
     let musicPlaying = false;
 
-    function toggleMusic() {
-      if (musicPlaying) {
-        music.pause();
-        musicToggle.textContent = '🔇 Music Off';
-        musicPlaying = false;
+    musicToggle.addEventListener('click', () => {
+      if(musicPlaying) {
+        bgMusic.pause();
+        musicToggle.textContent = '🎵';
       } else {
-        music.play().catch(e => console.log('Autoplay blocked'));
-        musicToggle.textContent = '🎵 Music On';
-        musicPlaying = true;
+        bgMusic.play().catch(e => console.log('Music play failed'));
+        musicToggle.textContent = '🔇';
       }
-    }
-
-    // ===== Password Gate =====
-    const CORRECT_ANSWER = "anaconda";
-    let attempts = 0;
-    let currentPage = 0;
-    let pages = JSON.parse(localStorage.getItem('scrapbookPages')) || [createEmptyPage()];
-
-    function checkLock() {
-      const answerInput = document.getElementById('secret-answer').value.trim().toLowerCase();
-      const errorMsg = document.getElementById('lock-error');
-      const unlockBtn = document.getElementById('unlock-btn');
-
-      if (answerInput === CORRECT_ANSWER) {
-        document.getElementById('lock-screen').classList.add('hidden');
-        music.play().then(() => {
-          musicPlaying = true;
-          musicToggle.textContent = '🎵 Music On';
-        }).catch(() => {
-          musicToggle.textContent = '🔇 Click for Music';
-        });
-
-        setTimeout(() => {
-          document.getElementById('lock-screen').style.display = 'none';
-          document.getElementById('main-content').style.display = 'block';
-          renderBook();
-        }, 800);
-      } else {
-        attempts++;
-        errorMsg.textContent = `Not quite right. ${3 - attempts} tries left 💭`;
-        document.getElementById('secret-answer').value = '';
-        document.querySelector('.lock-box').style.animation = 'shake 0.5s';
-        setTimeout(() => { document.querySelector('.lock-box').style.animation = ''; }, 500);
-
-        if (attempts >= 3) {
-          errorMsg.textContent = 'Locked. Refresh the page to try again.';
-          unlockBtn.disabled = true;
-          document.getElementById('secret-answer').disabled = true;
-        }
-      }
-    }
-
-    document.getElementById('secret-answer').addEventListener('keypress', e => {
-      if (e.key === 'Enter') checkLock();
+      musicPlaying =!musicPlaying;
     });
 
-    // ===== Book Logic =====
-    function createEmptyPage() {
-      return { id: Date.now(), img: '', title: '', date: '', note: '' };
+    // Unlock
+    document.getElementById('unlockBtn').addEventListener('click', () => {
+      const input = document.getElementById('passwordInput').value;
+      if(input.toLowerCase() === PASSWORD.toLowerCase()) {
+        const bloom = document.getElementById('unlockBloom');
+        bloom.classList.add('active');
+
+        setTimeout(() => {
+          document.getElementById('lockScreen').classList.add('hidden');
+          document.getElementById('mainContainer').classList.add('active');
+          createFireflies();
+          updateTimeCounter();
+          updateCountdowns();
+          setInterval(updateTimeCounter, 60000);
+          setInterval(updateCountdowns, 60000);
+          loadFromCloud();
+        }, 1000);
+      } else {
+        document.getElementById('passwordInput').style.borderColor = '#ff0000';
+        setTimeout(() => {
+          document.getElementById('passwordInput').style.borderColor = 'var(--rose)';
+        }, 500);
+      }
+    });
+
+    document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') document.getElementById('unlockBtn').click();
+    });
+
+    // Page Navigation
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      event.target.closest('.nav-btn').classList.add('active');
     }
 
-    function renderBook() {
-      const container = document.getElementById('book-container');
-      container.innerHTML = '';
-
-      pages.forEach((page, index) => {
-        const pageEl = document.createElement('div');
-        pageEl.className = `book-page ${index === currentPage? 'active' : ''}`;
-        pageEl.innerHTML = `
-          <div class="image-placeholder" onclick="triggerUpload('file-${page.id}')">
-            <span id="text-${page.id}" style="display:${page.img? 'none' : 'block'}">Add Photo 🌹</span>
-            <img id="img-${page.id}" alt="Memory" src="${page.img}" style="display:${page.img? 'block' : 'none'}">
-          </div>
-          <input type="file" id="file-${page.id}" accept="image/*" style="display:none;" onchange="previewImage(this, ${index})">
-          <input type="text" placeholder="Memory Title..." value="${page.title}" oninput="updatePage(${index}, 'title', this.value)">
-          <input type="date" value="${page.date}" oninput="updatePage(${index}, 'date', this.value)">
-          <textarea placeholder="Write about this memory..." oninput="updatePage(${index}, 'note', this.value)">${page.note}</textarea>
-          <div class="page-number">Page ${index + 1}</div>
-        `;
-        container.appendChild(pageEl);
-      });
-
-      updateNav();
+    // Time Together Counter
+    function updateTimeCounter() {
+      const now = new Date();
+      const diff = now - START_DATE;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('timeCounter').textContent =
+        `We've been writing this chapter for ${days} days, ${hours} hours, ${minutes} minutes`;
     }
 
-    function updatePage(index, field, value) {
-      pages[index][field] = value;
-      savePages();
-    }
+    // Countdowns
+    function updateCountdowns() {
+      const now = new Date();
 
-    function savePages() {
-      localStorage.setItem('scrapbookPages', JSON.stringify(pages));
-    }    function changePage(dir) {
-      currentPage = Math.max(0, Math.min(pages.length - 1, currentPage + dir));
-      renderBook();
-    }
+      // Days since Dec 30
+      const sinceDec30 = Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24));
+      document.getElementById('daysSinceDec30').textContent = `${sinceDec30} days ago`;
 
-    function addPage() {
-      pages.push(createEmptyPage());
-      currentPage = pages.length - 1;
-      savePages();
-      renderBook();
-    }
-
-    function updateNav() {
-      document.getElementById('page-indicator').textContent = `Page ${currentPage + 1} of ${pages.length}`;
-      document.getElementById('prev-btn').disabled = currentPage === 0;
-      document.getElementById('next-btn').disabled = currentPage === pages.length - 1;
-    }
-
-    function triggerUpload(inputId) {
-      document.getElementById(inputId).click();
-    }
-
-    function previewImage(input, pageIndex) {
-      const file = input.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          pages[pageIndex].img = e.target.result;
-          savePages();
-          renderBook();
-        };
-        reader.readAsDataURL(file);
+      // Days until Feb 13
+      const untilFeb13 = Math.ceil((REUNION_DATE - now) / (1000 * 60 * 60 * 24));
+      if(untilFeb13 > 0) {
+        document.getElementById('daysUntilFeb13').textContent = `${untilFeb13} days until I see you`;
+      } else {
+        document.getElementById('daysUntilFeb13').textContent = `We're together now 💕`;
       }
     }
 
-    // ===== Export / Import =====
-    function exportData() {
-      const dataStr = JSON.stringify(pages, null, 2);
-      const blob = new Blob([dataStr], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'our-next-chapter-backup.json'; a.click();
-      URL.revokeObjectURL(url);
+    // Secret Notes with Typing Effect
+    function openNote(noteId) {
+      const modal = document.getElementById('noteModal');
+      const content = document.getElementById('noteContent');
+      modal.style.display = 'flex';
+      content.textContent = '';
+      typeText(content, secretNotes[noteId] || 'No note yet...', 30);
     }
 
-    function importData(input) {
-      const file = input.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => {
-          try {
-            pages = JSON.parse(e.target.result);
-            currentPage = 0;
-            savePages();
-            renderBook();
-            alert('Memories restored successfully! 🌹');
-          } catch { alert('Invalid backup file'); }
-        };
-        reader.readAsText(file);
+    function closeNote() {
+      document.getElementById('noteModal').style.display = 'none';
+    }
+
+    function typeText(element, text, speed) {
+      let i = 0;
+      const timer = setInterval(() => {
+        if(i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+      }, speed);
+    }
+
+    // Worries Letter
+    function openWorriesLetter() {
+      const envelope = document.getElementById('worriesEnvelope');
+      const content = document.getElementById('worriesLetterContent');
+      const typedText = document.getElementById('worriesTypedText');
+
+      envelope.style.transform = 'rotateY(180deg)';
+      envelope.style.opacity = '0';
+
+      setTimeout(() => {
+        content.style.display = 'block';
+        // PLACEHOLDER: Add your "for your worries" letter text here when ready
+        const letterText = "Add your letter here when you're ready to write it...";
+        typeText(typedText, letterText, 40);
+      }, 600);
+    }
+
+    // Bucket List with Confetti
+    function toggleBucket(element, index) {
+      bucketState[index] =!bucketState[index];
+      const checkbox = element.querySelector('.checkbox');
+
+      if(bucketState[index]) {
+        element.classList.add('completed');
+        createConfetti(element);
+        saveToCloud();
+      } else {
+        element.classList.remove('completed');
+        saveToCloud();
+      }
+
+      updateBucketProgress();
+    }
+
+    function updateBucketProgress() {
+      const completed = bucketState.filter(Boolean).length;
+      document.getElementById('bucketProgress').textContent = `${completed} of 7 completed`;
+    }
+
+    function createConfetti(element) {
+      const rect = element.getBoundingClientRect();
+      const colors = ['#8B1E3F', '#FFD700', '#E8D7C3', '#A93255'];
+
+      for(let i = 0; i < 30; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = rect.left + rect.width/2 + 'px';
+        confetti.style.top = rect.top + 'px';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animation = `confettiFall ${1 + Math.random() * 2}s ease-out forwards`;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 3000);
       }
     }
+
+    // Thinking of You Button
+    document.getElementById('thinkingBtn').addEventListener('click', () => {
+      // Send notification via Firebase
+      fetch(FIREBASE_URL + '/thinking.json', {
+        method: 'POST',
+        body: JSON.stringify({
+          timestamp: new Date().toISOString(),
+          message: 'She is thinking of you ❤️'
+        })
+      }).catch(e => console.log('Notification failed'));
+
+      // Visual feedback
+      const btn = document.getElementById('thinkingBtn');
+      btn.textContent = '💕';
+      setTimeout(() => btn.textContent = '❤️', 1000);
+    });
+
+    // Cloud Sync
+    async function saveToCloud() {
+      try {
+        await fetch(FIREBASE_URL + '/data.json', {
+          method: 'PUT',
+          body: JSON.stringify({
+            bucketState: bucketState,
+            lastUpdated: new Date().toISOString()
+          })
+        });
+        updateLastUpdated();
+      } catch(e) {
+        console.log('Save failed:', e);
+      }
+    }
+
+    async function loadFromCloud() {
+      try {
+        const res = await fetch(FIREBASE_URL + '/data.json');
+        const data = await res.json();
+        if(data && data.bucketState) {
+          bucketState = data.bucketState;
+          bucketState.forEach((checked, i) => {
+            if(checked) {
+              const item = document.querySelectorAll('.bucket-item')[i];
+              if(item) item.classList.add('completed');
+            }
+          });
+          updateBucketProgress();
+          updateLastUpdated(data.lastUpdated);
+        }
+      } catch(e) {
+        console.log('Load failed:', e);
+      }
+    }
+
+    function updateLastUpdated(timestamp) {
+      const date = timestamp? new Date(timestamp) : new Date();
+      const now = new Date();
+      const diff = Math.floor((now - date) / (1000 * 60));
+
+      let text;
+      if(diff < 1) text = 'She just added something';
+      else if(diff < 60) text = `She added something ${diff}m ago`;
+      else if(diff < 1440) text = `She added something ${Math.floor(diff/60)}h ago`;
+      else text = `She added something ${Math.floor(diff/1440)}d ago`;
+
+      document.getElementById('lastUpdated').textContent = text;
+    }
+
+    // Init last updated check
+    setInterval(() => updateLastUpdated(), 60000);
   </script>
 </body>
 </html>
