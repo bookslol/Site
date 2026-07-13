@@ -2,904 +2,260 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>For Us 💌</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Next Chapter</title>
   <style>
-    :root {
-      --rose: #8B1E3F;
-      --rose-light: #A93255;
-      --beige: #E8D7C3;
-      --nude: #D4C4B0;
-      --dark-wood: #2C1810;
-      --wood: #3E2723;
-      --forest: rgba(30, 20, 15, 0.85);
-      --paper: #F5F0E8;
-      --ink: #3E2723;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
     }
-
     body {
-      font-family: 'Playfair Display', serif;
-      background: var(--dark-wood);
-      color: var(--beige);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom Rose Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-    }
-
-    .custom-cursor::before {
-      content: '🌹';
-      font-size: 20px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    /* Forest Background */
-    .forest-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        linear-gradient(var(--forest), var(--forest)),
-        url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600') center/cover;
-      z-index: -2;
-    }
-
-    /* Fireflies */
-    .firefly {
-      position: fixed;
-      width: 4px;
-      height: 4px;
-      background: #FFD700;
-      border-radius: 50%;
-      pointer-events: none;
-      box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      animation: float 20s infinite ease-in-out;
-      z-index: -1;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      50% { transform: translate(100px, -100px); }
-    }
-
-    /* Music Toggle */
-    .music-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-      background: var(--rose);
-      border: 2px solid var(--beige);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    }
-
-    .music-toggle:active {
-      transform: scale(0.95);
-    }
-
-    /* Last Updated Tag */
-    .last-updated {
-      position: fixed;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(139, 30, 63, 0.9);
-      color: var(--beige);
-      padding: 6px 15px;
-      border-radius: 20px;
-      font-size: 11px;
-      z-index: 999;
-      border: 1px solid var(--beige);
-    }
-
-    /* Thinking of You Button */
-    .thinking-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 55px;
-      height: 55px;
-      background: var(--rose);
-      border: 2px solid var(--beige);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(139, 30, 63, 0.6);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 4px 20px rgba(139, 30, 63, 0.6); }
-      50% { box-shadow: 0 4px 30px rgba(139, 30, 63, 0.9); }
-    }    /* Lock Screen */
-    .lock-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: var(--dark-wood);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      transition: opacity 1s ease;
-    }
-
-    .lock-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .book-cover {
-      width: 280px;
-      height: 380px;
-      background: linear-gradient(135deg, var(--wood), var(--dark-wood));
-      border: 3px solid var(--rose);
-      border-radius: 5px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .book-title {
-      font-family: 'Caveat', cursive;
-      font-size: 36px;
-      color: var(--rose);
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .book-subtitle {
-      font-size: 14px;
-      color: var(--beige);
-      font-style: italic;
-    }
-
-    .password-input {
-      background: rgba(245, 240, 232, 0.1);
-      border: 2px solid var(--rose);
-      color: var(--beige);
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-size: 16px;
-      text-align: center;
-      width: 200px;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .password-input:focus {
-      outline: none;
-      background: rgba(245, 240, 232, 0.2);
-    }
-
-    .unlock-btn {
-      margin-top: 15px;
-      background: var(--rose);
-      color: var(--beige);
-      border: none;
-      padding: 10px 30px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-family: 'Playfair Display', serif;
-    }
-
-    /* Unlock Animation */
-    .unlock-bloom {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 0px;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 10001;
-    }
-
-    .unlock-bloom.active {
-      animation: bloom 2s ease-out forwards;
-    }
-
-    @keyframes bloom {
-      0% { font-size: 0px; opacity: 0; }
-      50% { font-size: 120px; opacity: 1; }
-      100% { font-size: 200px; opacity: 0; }
-    }
-
-    /* Main Container */
-    .container {
-      display: none;
-      min-height: 100vh;
+      font-family: 'Georgia', serif;
+      background: #0f0f1a;
+      color: #f5f5f5;
+      line-height: 1.6;
       padding: 20px;
-      padding-bottom: 100px;
     }
-
-    .container.active {
-      display: block;
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
     }
-
-    /* Page System */
-    .page {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Navigation */
-    .nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(44, 24, 16, 0.95);
-      border-top: 2px solid var(--rose);
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      z-index: 998;
-    }
-
-    .nav-btn {
-      background: none;
-      border: none;
-      color: var(--beige);
-      font-size: 11px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 5px 10px;
-    }
-
-    .nav-btn.active {
-      color: var(--rose-light);
-    }
-
-    .nav-icon {
-      font-size: 20px;
-    }
-
-    /* Time Together Counter */
-    .time-counter {
+    h1 {
       text-align: center;
-      background: rgba(139, 30, 63, 0.2);
-      border: 1px solid var(--rose);
-      border-radius: 15px;
-      padding: 15px;
+      font-size: 2.2rem;
       margin: 20px 0;
-      font-family: 'Caveat', cursive;
-      font-size: 18px;
-      color: var(--beige);
+      color: #e8d5c4;
+      font-weight: normal;
+    }    .days-counter {
+      text-align: center;
+      font-size: 1.3rem;
+      margin: 30px 0;
+      padding: 20px;
+      background: #1a1a2e;
+      border-radius: 12px;
+      border: 1px solid #2d2d44;
+    }
+    .days-number {
+      font-size: 2.5rem;
+      color: #f4c2c2;
+      display: block;
+      margin: 10px 0;
+    }
+    .memory {
+      background: #1a1a2e;
+      margin: 25px 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #2d2d44;
+    }
+    .memory img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+    }    .memory-content {
+      padding: 20px;
+    }
+    .memory-date {
+      color: #f4c2c2;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .memory-note {
+      margin-bottom: 10px;
+    }
+    .secret-note {
+      display: none;
+      background: #2d2d44;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-style: italic;
+      border-left: 3px solid #f4c2c2;
+    }
+    .secret-note.show {
+      display: block;
+    }
+    .tap-hint {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: center;
+      margin-top: 5px;
+    }    .section {
+      background: #1a1a2e;
+      margin: 25px 0;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid #2d2d44;
+    }
+    .section h2 {
+      color: #e8d5c4;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      font-weight: normal;
+    }
+    .open-when {
+      cursor: pointer;
+    }
+    .open-when-content {
+      display: none;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #2d2d44;
+    }
+    .open-when-content.show {
+      display: block;
+    }
+    .bucket-list {
+      list-style: none;
+    }    .bucket-list li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+    }
+    .bucket-list li:before {
+      content: "♡";
+      position: absolute;
+      left: 0;
+      color: #f4c2c2;
+    }
+    .album-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: #f4c2c2;
+      color: #0f0f1a;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      margin: 30px 0;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .album-btn:hover {
+      background: #e8a8a8;
+    }
+    .music-player {
+      text-align: center;
+      margin: 30px 0;
+    }    audio {
+      width: 100%;
+      max-width: 300px;
     }
   </style>
 </head>
 <body>
-  <div class="forest-bg"></div>
-  <div class="custom-cursor" id="cursor"></div>
-  
-  <!-- Music -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-  </audio>
-  <button class="music-toggle" id="musicToggle">🎵</button>
-  
-  <!-- Thinking of You Button -->
-  <button class="thinking-btn" id="thinkingBtn">❤️</button>
-  
-  <!-- Last Updated -->
-  <div class="last-updated" id="lastUpdated">She added something recently</div>
-
-  <!-- Lock Screen -->
-  <div class="lock-screen" id="lockScreen">
-    <div class="book-cover">
-      <div class="book-title">Our Story</div>
-      <div class="book-subtitle">written in stardust & fireflies</div>
+  <div class="container">
+    <h1>Our Next Chapter</h1>
+    
+    <div class="days-counter">
+      Days Together
+      <span class="days-number" id="daysCount">0</span>
+      Since December 30th, 2025
     </div>
-    <input type="password" class="password-input" id="passwordInput" placeholder="Enter our key">
-    <button class="unlock-btn" id="unlockBtn">Open Book</button>
+
+    <div class="music-player">
+      <audio controls loop>
+        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <div class="tap-hint">lofi for us ♡</div>
+    </div>
+
+    <div class="memory" onclick="toggleSecret(0)">
+      <img src="https://drive.google.com/uc?export=view&id=1Ov2CWtrZ_a9iPR9alzV9__dnz0sMmY8V" alt="Paint night">
+            <div class="memory-content">
+        <div class="memory-date">May 17th</div>
+        <div class="memory-note">Paint night</div>
+        <div class="tap-hint">tap photo for a secret note</div>
+        <div class="secret-note" id="secret0">
+          This night I felt like me. I realized only you had made me feel like that in a long time.
+        </div>
+      </div>
+    </div>
+
+    <div class="memory" onclick="toggleSecret(1)">
+      <img src="https://drive.google.com/uc?export=view&id=1i5qtIW8amYg39PjXM_YrxU3kbkvNKeLY" alt="Long day after duty">
+      <div class="memory-content">
+        <div class="memory-date">April 24th</div>
+        <div class="memory-note">Long day after duty</div>
+        <div class="tap-hint">tap photo for a secret note</div>
+        <div class="secret-note" id="secret1">
+          When I saw you laying there like that, I felt like I wanted endless days of being married to you — bringing you food when you’re burnt out.
+        </div>
+      </div>
+    </div>
+
+    <div class="memory" onclick="toggleSecret(2)">
+      <img src="https://drive.google.com/uc?export=view&id=1rOfrR0G46uL3ZshJThGKFDzg1x5F4pdx" alt="Cooked together">
+      <div class="memory-content">
+        <div class="memory-date">April 21</div>
+        <div class="memory-note">Cooked together</div>
+        <div class="tap-hint">tap photo for a secret note</div>
+        <div class="secret-note" id="secret2">
+          The day I learned that all the barriers I have with others, I don’t have with you.
+        </div>
+      </div>
+    </div>
+
+    <div class="section open-when" onclick="toggleOpenWhen()">
+      <h2>Open when you are worried</h2>
+      <div class="open-when-content" id="openWhenContent">
+        Hello my handsome man,<br><br>
+        You’ve said that you worry you aren’t enough, or that I’ll want more in the future. I want to tell you: you <em>are</em> enough.<br><br>
+        It’s beautiful to watch you grow and strive to be better every day — it’s inspiring. You make me want to be better too. I invest in us because I want us in the future. I want to look at you next to me and know how it feels to get that far in life together, especially when we both came from nothing.<br><br>
+        I dream about being your wife and having your kids. I love your touch and your laugh and your smile. Your smell brightens my spirits and raises my hopes.<br><br>
+        I love you, handsome, and I am choosing us for good.<br><br>
+        – ocean eyes
+      </div>
+    </div>
+        <div class="section">
+      <h2>Bucket List</h2>
+      <ul class="bucket-list">
+        <li>Travel the world</li>
+        <li>Have a house in Guam</li>
+        <li>Get married</li>
+        <li>Have kids</li>
+        <li>Have our own house</li>
+        <li>Start a business</li>
+        <li>Donate to a charity</li>
+      </ul>
+    </div>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdhDpYlmDfOXBzWYdWVxajVM7dCqTyfEImLABTweJBJfd0-2A/viewform?usp=publish-editor" 
+       target="_blank" 
+       class="album-btn">
+      Add to Our Album ♡
+    </a>
+
   </div>
 
-  <div class="unlock-bloom" id="unlockBloom">🌹</div>
+  <script>
+    // Days together counter since Dec 30, 2025
+    function updateDaysCounter() {
+      const startDate = new Date('2025-12-30T00:00:00');
+      const today = new Date();
+      const diffTime = today - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('daysCount').textContent = diffDays > 0 ? diffDays : 0;
+    }
+    updateDaysCounter();
+    setInterval(updateDaysCounter, 1000 * 60 * 60); // update every hour
 
-  <!-- Main Content -->
-  <div class="container" id="mainContainer">
-      <!-- Home/Calendar Page -->
-    <div class="page active" id="page-home">
-      <div class="time-counter" id="timeCounter">
-        We've been writing this chapter for 0 days, 0 hours
-      </div>
-
-      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Dates</h2>
-      
-      <!-- December 30 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <h3 style="color: var(--beige); font-size: 22px;">December 30</h3>
-          <span style="background: var(--rose); color: var(--beige); padding: 4px 12px; border-radius: 12px; font-size: 12px;">Our First Day</span>
-        </div>
-        <div style="color: var(--nude); font-size: 14px; margin-bottom: 10px;" id="daysSinceDec30">
-          Loading...
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 14px;">
-          <!-- PLACEHOLDER: Add your note about Dec 30 here -->
-          The day everything changed. Add your memory here.
-        </div>
-        <button class="envelope-btn" onclick="openNote('dec30')" style="margin-top: 15px; width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-
-      <!-- February 13 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-          <h3 style="color: var(--beige); font-size: 22px;">February 13</h3>
-          <span style="background: var(--rose); color: var(--beige); padding: 4px 12px; border-radius: 12px; font-size: 12px;">Next Chapter</span>
-        </div>
-        <div style="color: var(--nude); font-size: 14px; margin-bottom: 10px;" id="daysUntilFeb13">
-          Loading...
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 14px;">
-          <!-- PLACEHOLDER: Add your note about Feb 13 here -->
-          Counting down to see you again. Add your note here.
-        </div>
-        <button class="envelope-btn" onclick="openNote('feb13')" style="margin-top: 15px; width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="nav">
-      <button class="nav-btn active" onclick="showPage('home')">
-        <span class="nav-icon">🏠</span>
-        <span>Home</span>
-      </button>
-      <button class="nav-btn" onclick="showPage('memories')">
-        <span class="nav-icon">📖</span>
-        <span>Memories</span>
-      </button>
-      <button class="nav-btn" onclick="showPage('bucket')">
-        <span class="nav-icon">✨</span>
-        <span>Bucket List</span>
-      </button>
-      <button class="nav-btn" onclick="showPage('worries')">
-        <span class="nav-icon">💌</span>
-        <span>Letter</span>
-      </button>
-    </div>
-
-    <!-- Secret Note Modal -->
-    <div id="noteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10002; align-items: center; justify-content: center; padding: 20px;">
-      <div style="background: var(--paper); color: var(--ink); padding: 30px; border-radius: 15px; max-width: 400px; width: 100%; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-        <button onclick="closeNote()" style="position: absolute; top: 10px; right: 10px; background: var(--rose); color: var(--beige); border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 18px;">×</button>
-        <div id="noteContent" style="font-family: 'Caveat', cursive; font-size: 20px; line-height: 1.6; min-height: 100px;"></div>
-      </div>
-    </div>
-        <!-- Memories Page -->
-    <div class="page" id="page-memories">
-      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Memories</h2>
-      
-      <!-- Memory: January 2 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 2</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
-          <img src="https://drive.google.com/uc?id=1i5qtIW8amYg39PjXM_YrxU3kbkvNKeLY" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for Jan 2 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('jan2')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-      <!-- Memory: January 5 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 5</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
-          <img src="https://drive.google.com/uc?id=1Ov2CWtrZ_a9iPR9alzV9__dnz0sMmY8V" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for Jan 5 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('jan5')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-      <!-- Memory: January 7 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">January 7</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for Jan 7 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('jan7')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-            <!-- Memory: February 13 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">February 13</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for Feb 13 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('feb13mem')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-      <!-- Memory: May 19 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">May 19</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for May 19 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('may19')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-      <!-- Memory: August 9 -->
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-        <h3 style="color: var(--rose-light); font-size: 20px; margin-bottom: 15px; font-family: 'Caveat', cursive;">August 9</h3>
-        <div style="background: rgba(139, 30, 63, 0.2); border-radius: 10px; height: 200px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--nude); font-size: 14px;">
-          <!-- PLACEHOLDER: Replace with <img src="YOUR_PHOTO_URL" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"> -->
-        </div>
-        <div style="background: rgba(139, 30, 63, 0.1); border-left: 3px solid var(--rose); padding: 12px; border-radius: 8px; font-style: italic; color: var(--beige); font-size: 15px; margin-bottom: 15px;">
-          <!-- PLACEHOLDER: Add your memory note for Aug 9 here -->
-          Add your memory for this day...
-        </div>
-        <button class="envelope-btn" onclick="openNote('aug9')" style="width: 100%; background: var(--rose); color: var(--beige); border: none; padding: 10px; border-radius: 10px; font-family: 'Playfair Display', serif;">
-          💌 Open Secret Note
-        </button>
-      </div>
-    </div>
-        <!-- Bucket List Page -->
-    <div class="page" id="page-bucket">
-      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">Our Bucket List</h2>
-      
-      <div style="background: rgba(245, 240, 232, 0.05); border: 2px solid var(--rose); border-radius: 15px; padding: 20px; margin-bottom: 20px;">
-        <p style="text-align: center; color: var(--nude); font-style: italic; margin-bottom: 20px; font-size: 14px;">
-          Things we’ll do together, one checkmark at a time ✨
-        </p>
-        
-        <div id="bucketList">
-          <!-- Bucket Item 1 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 0)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Watch the sunrise together
-            </div>
-          </div>
-
-          <!-- Bucket Item 2 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 1)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Cook dinner together over video call
-            </div>
-          </div>
-
-          <!-- Bucket Item 3 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 2)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Take a road trip with no destination
-            </div>
-          </div>
-
-          <!-- Bucket Item 4 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 3)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Stargaze and find constellations
-            </div>
-          </div>
-
-          <!-- Bucket Item 5 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 4)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Build a blanket fort and watch movies
-            </div>
-          </div>
-
-          <!-- Bucket Item 6 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 5)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Write letters to open on our anniversary
-            </div>
-          </div>
-
-          <!-- Bucket Item 7 -->
-          <div class="bucket-item" onclick="toggleBucket(this, 6)" style="background: rgba(139, 30, 63, 0.1); border: 1px solid var(--rose); border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; position: relative;">
-            <div class="checkbox" style="width: 24px; height: 24px; border: 2px solid var(--rose); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px;"></div>
-            <div style="flex: 1; color: var(--beige); font-size: 15px;">
-              <!-- PLACEHOLDER: Edit this bucket list item -->
-              Get lost in a bookstore together
-            </div>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 25px; color: var(--nude); font-size: 13px;" id="bucketProgress">
-          0 of 7 completed
-        </div>
-      </div>
-    </div>
-        <!-- For Your Worries Letter Page -->
-    <div class="page" id="page-worries">
-      <h2 style="text-align: center; color: var(--rose); font-family: 'Caveat', cursive; font-size: 32px; margin: 20px 0;">For Your Worries</h2>
-      
-      <div style="display: flex; justify-content: center; margin: 40px 0;">
-        <div id="worriesEnvelope" onclick="openWorriesLetter()" style="width: 200px; height: 140px; background: linear-gradient(135deg, var(--rose), var(--rose-light)); border-radius: 10px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform-style: preserve-3d; transition: transform 0.6s;">
-          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40px;">💌</div>
-          <div style="position: absolute; bottom: 15px; width: 100%; text-align: center; color: var(--beige); font-family: 'Caveat', cursive; font-size: 18px;">
-            Tap to open
-          </div>
-        </div>
-      </div>
-
-      <div id="worriesLetterContent" style="display: none; background: var(--paper); color: var(--ink); padding: 30px; border-radius: 15px; margin: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); min-height: 300px;">
-        <div style="font-family: 'Caveat', cursive; font-size: 22px; line-height: 1.8; text-align: left;">
-          <!-- PLACEHOLDER: Leave blank for you to write your letter. Type your message here when ready. -->
-          <span id="worriesTypedText"></span><span id="worriesCursor" style="animation: blink 1s infinite;">|</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <style>
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    // Toggle secret notes
+    function toggleSecret(index) {
+      const secret = document.getElementById('secret' + index);
+      secret.classList.toggle('show');
     }
 
-    .bucket-item.completed .checkbox {
-      background: var(--rose);
-      color: var(--beige);
+    // Toggle open when letter
+    function toggleOpenWhen() {
+      const content = document.getElementById('openWhenContent');
+      content.classList.toggle('show');
     }
-
-    .bucket-item.completed .checkbox::before {
-      content: '✓';
-     <script>
-    // Config - Replace these with your details
-    const START_DATE = new Date('2026-12-30T00:00:00');
-    const REUNION_DATE = new Date('2026-02-13T00:00:00');
-    const PASSWORD = 'anaconda'; // CHANGE THIS
-    const FIREBASE_URL = 'https://your-firebase-url.firebaseio.com'; // REPLACE WITH YOUR URL
-
-    // State
-    let bucketState = [false, false, false, false, false];
-    let secretNotes = {
-      dec30: "PLACEHOLDER: Write your secret note for Dec 30 here",
-      feb13: "PLACEHOLDER: Write your secret note for Feb 13 here",
-      jan2: "PLACEHOLDER: Write your secret note for Jan 2 here",
-      jan5: "PLACEHOLDER: Write your secret note for Jan 5 here",
-      jan7: "PLACEHOLDER: Write your secret note for Jan 7 here",
-      feb13mem: "PLACEHOLDER: Write your secret note for Feb 13 memory here",
-      may19: "PLACEHOLDER: Write your secret note for May 19 here",
-      aug9: "PLACEHOLDER: Write your secret note for Aug 9 here"
-    };
-
-    // Custom Cursor
-    document.addEventListener('mousemove', (e) => {
-      const cursor = document.getElementById('cursor');
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    // Fireflies
-    function createFireflies() {
-      for(let i = 0; i < 15; i++) {
-        const firefly = document.createElement('div');
-        firefly.className = 'firefly';
-        firefly.style.left = Math.random() * 100 + '%';
-        firefly.style.top = Math.random() * 100 + '%';
-        firefly.style.animationDelay = Math.random() * 20 + 's';
-        firefly.style.animationDuration = (15 + Math.random() * 10) + 's';
-        document.body.appendChild(firefly);
-      }
-    }
-
-    // Music Toggle
-    const bgMusic = document.getElementById('bgMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    let musicPlaying = false;
-
-    musicToggle.addEventListener('click', () => {
-      if(musicPlaying) {
-        bgMusic.pause();
-        musicToggle.textContent = '🎵';
-      } else {
-        bgMusic.play().catch(e => console.log('Music play failed'));
-        musicToggle.textContent = '🔇';
-      }
-      musicPlaying =!musicPlaying;
-    });
-
-    // Unlock
-    document.getElementById('unlockBtn').addEventListener('click', () => {
-      const input = document.getElementById('passwordInput').value;
-      if(input.toLowerCase() === PASSWORD.toLowerCase()) {
-        const bloom = document.getElementById('unlockBloom');
-        bloom.classList.add('active');
-
-        setTimeout(() => {
-          document.getElementById('lockScreen').classList.add('hidden');
-          document.getElementById('mainContainer').classList.add('active');
-          createFireflies();
-          updateTimeCounter();
-          updateCountdowns();
-          setInterval(updateTimeCounter, 60000);
-          setInterval(updateCountdowns, 60000);
-          loadFromCloud();
-        }, 1000);
-      } else {
-        document.getElementById('passwordInput').style.borderColor = '#ff0000';
-        setTimeout(() => {
-          document.getElementById('passwordInput').style.borderColor = 'var(--rose)';
-        }, 500);
-      }
-    });
-
-    document.getElementById('passwordInput').addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') document.getElementById('unlockBtn').click();
-    });
-
-    // Page Navigation
-    function showPage(page) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('page-' + page).classList.add('active');
-      event.target.closest('.nav-btn').classList.add('active');
-    }
-
-    // Time Together Counter
-    function updateTimeCounter() {
-      const now = new Date();
-      const diff = now - START_DATE;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      document.getElementById('timeCounter').textContent =
-        `We've been writing this chapter for ${days} days, ${hours} hours, ${minutes} minutes`;
-    }
-
-    // Countdowns
-    function updateCountdowns() {
-      const now = new Date();
-
-      // Days since Dec 30
-      const sinceDec30 = Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24));
-      document.getElementById('daysSinceDec30').textContent = `${sinceDec30} days ago`;
-
-      // Days until Feb 13
-      const untilFeb13 = Math.ceil((REUNION_DATE - now) / (1000 * 60 * 60 * 24));
-      if(untilFeb13 > 0) {
-        document.getElementById('daysUntilFeb13').textContent = `${untilFeb13} days until I see you`;
-      } else {
-        document.getElementById('daysUntilFeb13').textContent = `We're together now 💕`;
-      }
-    }
-
-    // Secret Notes with Typing Effect
-    function openNote(noteId) {
-      const modal = document.getElementById('noteModal');
-      const content = document.getElementById('noteContent');
-      modal.style.display = 'flex';
-      content.textContent = '';
-      typeText(content, secretNotes[noteId] || 'No note yet...', 30);
-    }
-
-    function closeNote() {
-      document.getElementById('noteModal').style.display = 'none';
-    }
-
-    function typeText(element, text, speed) {
-      let i = 0;
-      const timer = setInterval(() => {
-        if(i < text.length) {
-          element.textContent += text.charAt(i);
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-      }, speed);
-    }
-
-    // Worries Letter
-    function openWorriesLetter() {
-      const envelope = document.getElementById('worriesEnvelope');
-      const content = document.getElementById('worriesLetterContent');
-      const typedText = document.getElementById('worriesTypedText');
-
-      envelope.style.transform = 'rotateY(180deg)';
-      envelope.style.opacity = '0';
-
-      setTimeout(() => {
-        content.style.display = 'block';
-        // PLACEHOLDER: Add your "for your worries" letter text here when ready
-        const letterText = "Add your letter here when you're ready to write it...";
-        typeText(typedText, letterText, 40);
-      }, 600);
-    }
-
-    // Bucket List with Confetti
-    function toggleBucket(element, index) {
-      bucketState[index] =!bucketState[index];
-      const checkbox = element.querySelector('.checkbox');
-
-      if(bucketState[index]) {
-        element.classList.add('completed');
-        createConfetti(element);
-        saveToCloud();
-      } else {
-        element.classList.remove('completed');
-        saveToCloud();
-      }
-
-      updateBucketProgress();
-    }
-
-    function updateBucketProgress() {
-      const completed = bucketState.filter(Boolean).length;
-      document.getElementById('bucketProgress').textContent = `${completed} of 7 completed`;
-    }
-
-    function createConfetti(element) {
-      const rect = element.getBoundingClientRect();
-      const colors = ['#8B1E3F', '#FFD700', '#E8D7C3', '#A93255'];
-
-      for(let i = 0; i < 30; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = rect.left + rect.width/2 + 'px';
-        confetti.style.top = rect.top + 'px';
-        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animation = `confettiFall ${1 + Math.random() * 2}s ease-out forwards`;
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        document.body.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 3000);
-      }
-    }
-
-    // Thinking of You Button
-    document.getElementById('thinkingBtn').addEventListener('click', () => {
-      // Send notification via Firebase
-      fetch(FIREBASE_URL + '/thinking.json', {
-        method: 'POST',
-        body: JSON.stringify({
-          timestamp: new Date().toISOString(),
-          message: 'She is thinking of you ❤️'
-        })
-      }).catch(e => console.log('Notification failed'));
-
-      // Visual feedback
-      const btn = document.getElementById('thinkingBtn');
-      btn.textContent = '💕';
-      setTimeout(() => btn.textContent = '❤️', 1000);
-    });
-
-    // Cloud Sync
-    async function saveToCloud() {
-      try {
-        await fetch(FIREBASE_URL + '/data.json', {
-          method: 'PUT',
-          body: JSON.stringify({
-            bucketState: bucketState,
-            lastUpdated: new Date().toISOString()
-          })
-        });
-        updateLastUpdated();
-      } catch(e) {
-        console.log('Save failed:', e);
-      }
-    }
-
-    async function loadFromCloud() {
-      try {
-        const res = await fetch(FIREBASE_URL + '/data.json');
-        const data = await res.json();
-        if(data && data.bucketState) {
-          bucketState = data.bucketState;
-          bucketState.forEach((checked, i) => {
-            if(checked) {
-              const item = document.querySelectorAll('.bucket-item')[i];
-              if(item) item.classList.add('completed');
-            }
-          });
-          updateBucketProgress();
-          updateLastUpdated(data.lastUpdated);
-        }
-      } catch(e) {
-        console.log('Load failed:', e);
-      }
-    }
-
-    function updateLastUpdated(timestamp) {
-      const date = timestamp? new Date(timestamp) : new Date();
-      const now = new Date();
-      const diff = Math.floor((now - date) / (1000 * 60));
-
-      let text;
-      if(diff < 1) text = 'She just added something';
-      else if(diff < 60) text = `She added something ${diff}m ago`;
-      else if(diff < 1440) text = `She added something ${Math.floor(diff/60)}h ago`;
-      else text = `She added something ${Math.floor(diff/1440)}d ago`;
-
-      document.getElementById('lastUpdated').textContent = text;
-    }
-
-    // Init last updated check
-    setInterval(() => updateLastUpdated(), 60000);
   </script>
 </body>
 </html>
